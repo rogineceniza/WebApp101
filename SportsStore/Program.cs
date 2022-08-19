@@ -16,7 +16,11 @@ var app = builder.Build();
 
 //middlewares
 app.UseStaticFiles();
-app.MapDefaultControllerRoute();
+
+app.MapControllerRoute("pagination","Products/Page{productPage}",
+new { Controller = "Home", action = "Index" }); // naay paging
+
+app.MapDefaultControllerRoute(); // default
 SeedData.EnsurePopulated(app);
 app.Run();
 
